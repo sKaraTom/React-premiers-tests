@@ -3,9 +3,29 @@ import logo from './logo.svg';
 import './App.css';
 
 
+function LigneListe(props) {
+  return <li>{props.value}</li>;
+}
+/**
+ * Un tableau de nombres à afficher dans une liste.
+ * @param {*} props 
+ */
+function ListeNombres(props) {
+  const nombres = props.nombres;
+  // const listeNombres = nombres.map((nombre) => <li key={nombre.toString()} value={nombre}>{nombre}</li>);
+  // return <ul>{listeNombres}</ul>
+    return (
+      <ul>
+        {nombres.map((nombre) =>
+          <LigneListe key={nombre.toString()}
+                    value={nombre} />
+
+        )}
+      </ul>)
+}
+
 /**
  * afficher un message d'erreur ou rien
- * 
  * @param {*} props 
  */
 function WarningBanner(props) {
@@ -187,6 +207,12 @@ class Welcome extends React.Component {
 
 
 class App extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {nombres: [1,2,3,4,5]};
+  }
+
   render() {
     return (
       <div className="App">
@@ -202,6 +228,7 @@ class App extends Component {
           <BoutonPreventD/>
           <br/>
           <Toggle/>
+          <ListeNombres nombres={this.state.nombres} />
         </div>
       </div>
     );

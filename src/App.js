@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-
+/**
+ * une ligne d'une liste encapsulée dans son propre composant.
+ * @param {*} props 
+ */
 function LigneListe(props) {
   return <li>{props.value}</li>;
 }
@@ -19,7 +22,6 @@ function ListeNombres(props) {
         {nombres.map((nombre) =>
           <LigneListe key={nombre.toString()}
                     value={nombre} />
-
         )}
       </ul>)
 }
@@ -99,8 +101,124 @@ function BoutonPreventD() {
 }
 
 /**
+ *  Message à afficher après submit du formulaire.
+ * @param {*} props 
+ */
+function FormMessage(props) {
+  let classeCSS = "nomSaisi";
+  // si pas d'erreur et pas de message (=initialisation de la page)
+  //ne rien afficher.
+  if (!props.erreur && !props.message) {
+    return null;
+  }
+  // si erreur, afficher le message avec la classe CSS .warning
+  else if(props.erreur) {
+    classeCSS = "warning";
+  }
+  return (
+    <div className={classeCSS}>
+      {props.message}
+    </div>
+  );
+}
+
+/*****************CLASSES ***************/
+
+
+/**
+ * Dropdown de sélection du gene.
+ */
+class SelectGenreForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value:'indéterminé'}; // la valeur sélectionnée par défaut.
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value:event.target.value});
+  }
+  handleSubmit(event) {
+    alert('votre genre est : ' + this.state.value);
+    event.preventDefault();
+  }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          genre:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="homme">homme</option>
+            <option value="femme">femme</option>
+            <option value="chaise de jardin">chaise de jardin</option>
+            <option value="indéterminé">indéterminé</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+/** formulaire input champ texte
+ * avec message d'erreur ou résultat affiché
+ */
+class FormNom extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: '', erreur:false};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+
+    const message = "";
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+  handleSubmit(event) {
+    
+    // s'il y a eu saisie
+    if(this.state.value.trim()) {
+      this.message = 'nom saisi: ' + this.state.value;
+      this.setState({erreur:false});
+    }
+    // si aucune saisie (ou blancs)
+    else {
+      this.message = "veuillez saisir un nom";
+      this.setState({erreur:true});
+    }
+    console.log("message : ", this.message, this.state.erreur);
+    event.preventDefault(); // évite le rafraîchissement lié au submit
+  }
+  handleReset() {
+    this.setState({value: '', erreur:false});
+    this.message = "";
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+        <input type="reset" onClick={this.handleReset} />
+        <FormMessage erreur={this.state.erreur} message={this.message}/>
+      </form>
+    );
+  }
+}
+
+/**
  * Classe de contrôle de la connexion/déconnexion.
  * affiche le bouton co/déconnexion et le message de bienvenue.
+ * Un message Warning si non authentifié
  */
 class ControleLogin extends React.Component {
   constructor(props) {
@@ -108,7 +226,7 @@ class ControleLogin extends React.Component {
     this.handleConnexionClick = this.handleConnexionClick.bind(this);
     this.handleDeconnexionClick = this.handleDeconnexionClick.bind(this);
     this.state = {estAuthentifie:false,
-      showWarning: true};
+                  showWarning: true};
   }
 
   handleConnexionClick() {
@@ -223,19 +341,21 @@ class App extends Component {
         </header>
         <ControleLogin/>
         <div className="App-intro">
+          <hr/>
+          <FormNom />
+          <SelectGenreForm />
+          <hr/>
           <Welcome name="Sara" />
           <Heure/>
           <BoutonPreventD/>
           <br/>
           <Toggle/>
           <ListeNombres nombres={this.state.nombres} />
+          
         </div>
       </div>
     );
   }
-
-
-
 
 }
 

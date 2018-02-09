@@ -118,8 +118,6 @@ function FormMessage(props) {
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleReset = this.handleReset.bind(this);
-  
-      const message = "";
     }
   
     handleChange(event) {

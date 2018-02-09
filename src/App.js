@@ -4,8 +4,26 @@ import Connexion from './Connexion';
 import Horloge from './Horloge';
 import Temperature from './Temperature';
 import Formulaires from './Formulaires';
+import MouseTracker from './Mouse';
 import './App.css';
 
+/*****************LISTE AVEC BOUCLE PARENT ENFANT ***************/
+// Calls the children callback numTimes to produce a repeated component
+function Repeat(props) {
+  let items = [];
+  for (let i = 0; i < props.numTimes; i++) {
+    items.push(props.children(i));
+  }
+  return <div>{items}</div>;
+}
+
+function ListOfTenThings() {
+  return (
+    <Repeat numTimes={10}>
+      {(index) => <div key={index}>This is item {index} in the list</div>}
+    </Repeat>
+  );
+}
 
 /*****************CONTENEURS GENERIQUES ***************
  * utile pour composants neutres, type Dialog, SideBar */
@@ -76,7 +94,7 @@ function BoutonPreventD() {
   }
   return (
     <a href="http://www.yahoo.fr" onClick={handleClick}>
-      Click me
+      Click me prevent default
     </a>
   );
 }
@@ -131,21 +149,17 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
-          
         </header>
-        <Connexion />
         <div className="App-intro">
-          <Temperature />
-          <br />
-          <Formulaires />
           <br />
           <WelcomeDialog />
           <Welcome name="Sara" />
-          <Horloge />
           <BoutonPreventD/>
           <br/>
           <Toggle/>
+          <ListOfTenThings />
           <ListeNombres nombres={this.state.nombres} />
+          
           
         </div>
       </div>

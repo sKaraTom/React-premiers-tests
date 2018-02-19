@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import Connexion from './Connexion';
-import Horloge from './Horloge';
-import Temperature from './Temperature';
-import Formulaires from './Formulaires';
-import MouseTracker from './Mouse';
 import './App.css';
 
 /*****************LISTE AVEC BOUCLE PARENT ENFANT ***************/

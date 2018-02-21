@@ -1,0 +1,17 @@
+[
+  {
+    "company": "Mercedes",
+    "firmType": "S",
+	"firmCode": "TNS"
+  },
+    {
+    "company": "Coca",
+    "firmType": "P",
+	"firmCode": "COC"
+  },
+  {
+    "company": "Rolls Royce",
+    "firmType": "M",
+	"firmCode": "RRO"
+  }
+ ]

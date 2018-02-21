@@ -40,6 +40,11 @@ const page404 = ({ location }) => (
     </div>
 )
 
+const FormContainer = Loadable({
+    loader: () => import('./Enrollment-form/FormContainer'),
+    loading: Loading,
+});
+
 const Routes = () => (
   <Router>
     <div style={{ display: 'flex' }}>
@@ -57,6 +62,7 @@ const Routes = () => (
             <li><Link to="/horloge">horloge</Link></li>
             <li><Link to="/formulaires">formulaires</Link></li>
             <li><Link to="/test404">test-404</Link></li>
+            <li><Link to="/inscription">enrollment form</Link></li>
         </ul>
         </div>
         <div style={{ flex: 1, padding: '10px' }}>
@@ -67,6 +73,7 @@ const Routes = () => (
             <Route path="/temperature" component={Temperature}/>
             <Route path="/horloge" component={Horloge}/>
             <Route path="/formulaires" component={Formulaires}/>
+            <Route path="/inscription" component={FormContainer}/>
             <Route component={page404}/>
         </Switch>
         </div>

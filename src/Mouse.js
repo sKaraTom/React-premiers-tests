@@ -8,7 +8,7 @@ class Cat extends React.Component {
   render() {
     const mouse = this.props.mouse;
     return (
-      <img src={cat} style={{ position: 'absolute', left: mouse.x, top: mouse.y, width:'30px' }} />
+      <img src={cat} style={{ position: 'absolute', left: mouse.x, top: mouse.y, width:'30px' }} alt="cat" />
     );
   }
 }

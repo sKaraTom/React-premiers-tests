@@ -1,15 +1,15 @@
 import React from 'react';
 
 export const Select = (props) => {
-    let value = props.value;
+    let companyList = props.list;
+
     return (
     <label>
-    {props.label}
-            <select value={value} onChange={props.onChange} id={props.id}>
-              <option value="homme">homme</option>
-              <option value="femme">femme</option>
-              <option value="chaise de jardin">chaise de jardin</option>
-              <option value="indéterminé">indéterminé</option>
+    {props.label}*
+            <select className="form-control" onChange={props.onChange} id={props.id} value={props.value}>
+              <option disabled value="-1">--select a company--</option>
+              {companyList.map((comp,index) =>
+                    <option key={comp.company} value={index}>{comp.company}</option>)};
             </select>
     </label>
     )

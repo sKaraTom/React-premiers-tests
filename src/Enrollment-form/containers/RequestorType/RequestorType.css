@@ -1,0 +1,31 @@
+.radioLine {
+    /* border-style:groove; */
+    background-color: cornflowerblue;
+    padding:2%;
+    color:white;
+}
+
+.radioLine label {
+    padding:10px;
+    margin-right: 15px;
+    line-height:32px;
+}
+
+.radioLine input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    border-radius:50%;
+    width:16px;
+    height:16px;
+    
+    border: 2px solid white;
+    transition: 0.2s all linear;
+    outline:none;
+    margin-right: 5px;
+}
+
+.radioLine input:checked {
+    border: 6px solid indigo;
+}

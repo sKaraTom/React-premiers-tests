@@ -40,8 +40,8 @@ const page404 = ({ location }) => (
     </div>
 )
 
-const FormContainer = Loadable({
-    loader: () => import('./Enrollment-form/FormContainer'),
+const EnrollmentParent = Loadable({
+    loader: () => import('./Enrollment-form/containers/EnrollmentParent'),
     loading: Loading,
 });
 
@@ -50,11 +50,10 @@ const Routes = () => (
     <div style={{ display: 'flex' }}>
       <div style={{
         padding: '10px',
-        width: '10%',
-        height:'100%    ',
+        height:'100vh',
         background: '#f0f0f0'
       }}>
-        <ul style={{ listStyleType: 'none', padding: 0 }}>
+        <ul style={{ listStyleType: 'none', padding: '0', }}>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/connexion">connexion</Link></li>
             <li><Link to="/mouse">mouse tracker</Link></li>
@@ -73,7 +72,7 @@ const Routes = () => (
             <Route path="/temperature" component={Temperature}/>
             <Route path="/horloge" component={Horloge}/>
             <Route path="/formulaires" component={Formulaires}/>
-            <Route path="/inscription" component={FormContainer}/>
+            <Route path="/inscription" component={EnrollmentParent}/>
             <Route component={page404}/>
         </Switch>
         </div>

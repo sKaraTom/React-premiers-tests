@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import './css/bootstrap.min.css';
+
 
 /*****************LISTE AVEC BOUCLE PARENT ENFANT ***************/
 // Calls the children callback numTimes to produce a repeated component

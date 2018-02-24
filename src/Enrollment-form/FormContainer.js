@@ -5,7 +5,7 @@ import { Select } from './composants/Select';
 import companyList from '../assets/companyList.json';
 import '../css/bootstrap.min.css';
 
-
+// formulaire de test. A refactorer en modulaire
 class FormContainer extends React.Component {
 
     constructor(props) {

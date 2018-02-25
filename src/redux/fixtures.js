@@ -1,4 +1,4 @@
-import Immutable, { List, Map } from 'immutable';
+import { List, Map } from 'immutable';
 
 export const students = List([
   Map({ id: 1465171631163, firstName: 'Jean', lastName: 'Borotra', level: '6e', average: '10', isVisible: false, isUpdated: false }),

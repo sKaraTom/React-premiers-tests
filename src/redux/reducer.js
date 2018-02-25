@@ -1,4 +1,4 @@
-import Immutable, { List, Map } from 'immutable';
+import Immutable, { Map } from 'immutable';
 import { students } from './fixtures';
 
 export default function(state = students, action) {
@@ -14,7 +14,7 @@ export default function(state = students, action) {
           });
       case 'UPDATE_FORM':
           return state.map(item => {
-            if(item.get('id') == action.id) {
+            if(item.get('id') === action.id) {
               return Immutable.fromJS(action.item).set('isUpdated', true);
             } else {
               return item;
@@ -25,7 +25,7 @@ export default function(state = students, action) {
             return state.push(Map(action.item).set('isVisible', false).set('isUpdated', false));
         case 'DELETE_STUDENT': 
             return state.filter(function(item) {
-                return item.get("id") != action.id;
+                return item.get("id") !== action.id;
             });
         default:
         return state;

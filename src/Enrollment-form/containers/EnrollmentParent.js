@@ -16,6 +16,18 @@ export default class EnrollmentParent extends React.Component {
         this.setState({radioButton:e.target.value});
     }
 
+    isForMyselfOrAirbusManage() {
+        const radioB = this.state.radioButton;
+
+        if (radioB === "1" || radioB ==="2") {
+            return true;
+        }
+        else {
+            return false;
+        }
+        
+    }
+
     render() {
         const radioButton = this.state.radioButton;
         return (
@@ -23,7 +35,7 @@ export default class EnrollmentParent extends React.Component {
                 <h2>Enrollment</h2>
                 <RequestorType radioButton={radioButton} onChange={this.handleChangeRadio}  />
                 { radioButton === "0"? <p> Please choose your requestor type. </p> : "" }
-                { radioButton === "1" ? <FormContainer /> : "" }
+                { this.isForMyselfOrAirbusManage() ? <FormContainer /> : "" }
             </div>
         )
 

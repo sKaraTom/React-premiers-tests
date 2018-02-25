@@ -4,7 +4,7 @@ import './RequestorType.css';
 export default class RequestorType extends React.Component {
 
     render() {
-        const radioButton = this.props.radioButton;
+        // const radioButton = this.props.radioButton;
        return (
             <div className="row radioLine">
                 <form>

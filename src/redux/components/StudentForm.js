@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { reduxForm } from 'redux-form';
 
 const validate = values => {
@@ -34,7 +34,7 @@ let StudentForm = props => {
         }
     }
     
-    const {fields: {id, firstName, lastName, level, average, isVisible, isUpdated}, handleSubmit, resetForm, saveForm, deleteStudent} = props;
+    const {fields: {id, firstName, lastName, level, average, isUpdated}, handleSubmit, resetForm, saveForm, deleteStudent} = props;
 
     return (
       <form onSubmit={handleSubmit(save)}>

@@ -35,10 +35,12 @@ class FormContainer extends React.Component {
     }
 
     componentWillUnmount() {
-         this.setState({company:''});
+        //  this.setState({company:''});
       }
     
     handleChange(e) {
+        // à refactorer avec e.target.name à appliquer dynamiquement dans le setState()
+        //pour éviter toutes les conditions.
         if(e.target.id === "inputName") {
             this.setState({name:e.target.value});
         }

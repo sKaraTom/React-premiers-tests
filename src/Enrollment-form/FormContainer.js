@@ -11,6 +11,7 @@ class FormContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            test:'',
             name:'',
             firstName:'',
             login:'',
@@ -19,10 +20,11 @@ class FormContainer extends React.Component {
             emailAddress:'',
             companySelected:-1,
             isDisabled:true
-        }
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClickConsole = this.handleClickConsole.bind(this);
+        this.handleChangeTest = this.handleChangeTest.bind(this);
     }
 
     componentWillMount() {
@@ -39,22 +41,30 @@ class FormContainer extends React.Component {
       }
     
     handleChange(e) {
+        // console.log(this.refs.firstName.validity);
+        console.log(e.target.name);
+
         // à refactorer avec e.target.name à appliquer dynamiquement dans le setState()
         //pour éviter toutes les conditions.
-        if(e.target.id === "inputName") {
-            this.setState({name:e.target.value});
-        }
-        else if(e.target.id === "inputFirstName") {
-            this.setState({firstName:e.target.value});
-        }
-        else if(e.target.id === "inputLogin") {
-            this.setState({login:e.target.value});
-        }
-        else if(e.target.id === "selectCompany") {
-            // l'index est sauvé
-            this.setState({companySelected:e.target.value});
-            console.dir(this.state.company[e.target.value]);
-        }
+
+            this.setState({[e.target.name]:e.target.value});
+
+        // else if(e.target.id === "inputFirstName") {
+        //     this.setState({firstName:e.target.value});
+        // }
+        // else if(e.target.id === "inputLogin") {
+        //     this.setState({login:e.target.value});
+        // }
+        // else if(e.target.id === "selectCompany") {
+        //     // l'index est sauvé
+        //     this.setState({companySelected:e.target.value});
+        //     console.dir(this.state.company[e.target.value]);
+        // }
+    }
+    handleChangeTest(e) {
+        this.setState({test:e.target.value});
+        const validity = this.refs[e.target.name].validity;
+        console.dir(validity);
     }
 
     handleSubmit(e) {
@@ -75,6 +85,7 @@ class FormContainer extends React.Component {
 
 
     render() {
+        const test = "";
         const name = this.state.name;
         const firstName = this.state.firstName;
         const isEnabled = name.length > 0 && firstName.length > 0 && this.state.companySelected !== -1;
@@ -85,11 +96,20 @@ class FormContainer extends React.Component {
             <fieldset>
                 {/* <legend>formulaire</legend> */}
                 <form onSubmit={this.handleSubmit}>
-                    <InputText placeholder="name" value={name} onChange={this.handleChange} id="inputName" required="true"/>
+                <input className="form-control"
+                        type="email"
+                        name="email"
+                        ref="email"
+                        minLength="4"
+                        value={ this.state.test } 
+                        onChange={ this.handleChangeTest }
+                        required />
+                        
+                    <InputText placeholder="name" value={name} onChange={this.handleChange} id="inputName" name="name" required="true"/>
                     <br/>
-                    <InputText placeholder="first name" value={this.state.firstName} onChange={this.handleChange} id="inputFirstName" required="true"/>
+                    <InputText placeholder="first name" value={this.state.firstName} onChange={this.handleChange} name="firstName" id="inputFirstName" required="true"/>
                     <br/>
-                    <InputText placeholder="login" value={this.state.login} onChange={this.handleChange} id="inputLogin" required=""/>
+                    <InputText placeholder="login" value={this.state.login} onChange={this.handleChange} name="login" id="inputLogin" required=""/>
                     <br/>
                     <Select value={this.state.companySelected} list={this.state.company} label="company" onChange={this.handleChange} id="selectCompany"/>
                     <br/>
@@ -110,6 +130,7 @@ class FormContainer extends React.Component {
                 login : {this.state.login} <br/>
                 company : {this.state.company.map((comp) => <li key={comp.company}>{comp.company},{comp.firmType},{comp.firmCode}</li>)} <br/>
                 isEnabled : {isEnabled.toString()}
+                test : {this.state.test}
 
             </pre>
         </div>

@@ -44,22 +44,21 @@ class FormContainer extends React.Component {
         // console.log(this.refs.firstName.validity);
         console.log(e.target.name);
 
-        // à refactorer avec e.target.name à appliquer dynamiquement dans le setState()
-        //pour éviter toutes les conditions.
-
-            this.setState({[e.target.name]:e.target.value});
-
         // else if(e.target.id === "inputFirstName") {
         //     this.setState({firstName:e.target.value});
         // }
         // else if(e.target.id === "inputLogin") {
         //     this.setState({login:e.target.value});
         // }
-        // else if(e.target.id === "selectCompany") {
-        //     // l'index est sauvé
-        //     this.setState({companySelected:e.target.value});
-        //     console.dir(this.state.company[e.target.value]);
-        // }
+        if(e.target.id === "selectCompany") {
+            // l'index est sauvé
+            this.setState({companySelected:e.target.value});
+            console.dir(this.state.company[e.target.value]);
+        }
+        else {
+            this.setState({[e.target.name]:e.target.value});
+        }
+
     }
     handleChangeTest(e) {
         this.setState({test:e.target.value});
@@ -122,6 +121,7 @@ class FormContainer extends React.Component {
                 </form>
             </fieldset>
         </div>
+
         <div className="col" style={{ marginTop:"10px" }}>
             <pre>
             <button className="btn btn-secondary" onClick={this.handleClickConsole}> afficher state </button> <br/>

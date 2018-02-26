@@ -17,7 +17,7 @@ export const InputText = (props) => {
     return (
     <label>
         {props.placeholder}{isRequired ? "*" : "" }
-        <input className={'form-control '+ formValid} type="text" value={value} placeholder={placeholder} onChange={props.onChange} id={props.id} ref={props.ref} required={props.isRequired}/>
+        <input className={'form-control '+ formValid} type="text" value={value} placeholder={placeholder} onChange={props.onChange} id={props.id} name={props.name} required={props.isRequired}/>
         <div className="invalid-feedback">
         not good!
         </div>

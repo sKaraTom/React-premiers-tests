@@ -20,7 +20,7 @@ export default class EnrollmentParent extends React.Component {
         const radioButton = this.state.radioButton;
         return (
             <div className="container">
-                <h2>Enrollment</h2>
+                <h2>Request / Access rights acceptation</h2>
                 <RequestorType radioButton={radioButton} onChange={this.handleChangeRadio}  />
                 { radioButton === "0"? <p> Please choose your requestor type. </p> : "" }
                 { radioButton === "1" ? <FormContainer /> : "" }

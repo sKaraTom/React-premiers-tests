@@ -18,7 +18,7 @@ export default class AutoEnrollment extends React.Component {
             sites:{},
             siteSelected:'',
             phoneNumber:'',
-            function:'', //liste ?
+            function:'', //saisie manuelle (limitée en nombre de carac.)
             //champs auto
             productionFlightTest:'', //non éditable
             profile:'CONSULT',

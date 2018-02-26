@@ -1,6 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch,Link } from 'react-router-dom';
 import Loadable from 'react-loadable';
+import './css/bootstrap.min.css';
+
+import { createStore, combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
+import reducer from './redux/reducer';
+import { Provider } from 'react-redux';
+// import StudentsContainer from './redux/container';
+
+// redux
+const reducers = {
+    reducer,
+    form: formReducer,
+  }
+  const reduc = combineReducers(reducers);
+  const store = createStore(reduc);
+
 
 const Loading = () => <div>Loading...</div>;
 
@@ -45,7 +61,13 @@ const EnrollmentParent = Loadable({
     loading: Loading,
 });
 
+const studentRedux = Loadable({
+    loader: () => import('./redux/container'),
+    loading: Loading,
+});
+
 const Routes = () => (
+<Provider store={store}>
   <Router>
     <div style={{ display: 'flex' }}>
       <div style={{
@@ -62,6 +84,7 @@ const Routes = () => (
             <li><Link to="/formulaires">formulaires</Link></li>
             <li><Link to="/test404">test-404</Link></li>
             <li><Link to="/inscription">enrollment form</Link></li>
+            <li><Link to="/students">students Redux</Link></li>
         </ul>
         </div>
         <div style={{ flex: 1, padding: '10px' }}>
@@ -73,11 +96,13 @@ const Routes = () => (
             <Route path="/horloge" component={Horloge}/>
             <Route path="/formulaires" component={Formulaires}/>
             <Route path="/inscription" component={EnrollmentParent}/>
+            <Route path="/students" component={studentRedux}/>
             <Route component={page404}/>
         </Switch>
         </div>
     </div>
   </Router>
+</Provider>
 );
 
 export default Routes;

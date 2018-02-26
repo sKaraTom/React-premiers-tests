@@ -13,10 +13,18 @@ export const InputText = (props) => {
     const placeholder = props.placeholder;
     const value = props.value;
     const isRequired = props.required;
+    const formValid = "is-invalid";
     return (
     <label>
-    {props.placeholder}{isRequired ? "*" : "" }
-    <input className="form-control" type="text" value={value} placeholder={placeholder} onChange={props.onChange} id={props.id} required={props.isRequired}/>
+        {props.placeholder}{isRequired ? "*" : "" }
+        <input className={'form-control '+ formValid} type="text" value={value} placeholder={placeholder} onChange={props.onChange} id={props.id} required={props.isRequired}/>
+        <div className="invalid-feedback">
+        not good!
+        </div>
+        <div className="valid-feedback">
+        good!
+        </div>
     </label>
-    )
+
+    )   
 }

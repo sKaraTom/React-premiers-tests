@@ -13,7 +13,8 @@ export const InputText = (props) => {
     const placeholder = props.placeholder;
     const value = props.value;
     const isRequired = props.required;
-    const formValid = "is-invalid";
+    let formValid = "is-invalid";
+    value !== "" ? formValid = "is-valid" : formValid = "is-invalid";
     return (
     <label>
         {props.placeholder}{isRequired ? "*" : "" }

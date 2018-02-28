@@ -129,8 +129,8 @@ class FormContainer extends React.Component {
                 firstName : {this.state.firstName} <br/>
                 login : {this.state.login} <br/>
                 company : {this.state.company.map((comp) => <li key={comp.company}>{comp.company},{comp.firmType},{comp.firmCode}</li>)} <br/>
-                isEnabled : {isEnabled.toString()}
-                test : {this.state.test}
+                isEnabled : {isEnabled.toString()} <br/>
+                test uncontrolledComponent : {this.state.test}
 
             </pre>
         </div>

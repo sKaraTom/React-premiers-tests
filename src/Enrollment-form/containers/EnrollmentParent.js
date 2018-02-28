@@ -1,6 +1,7 @@
 import React from 'react';
 import FormContainer from './../FormContainer';
 import RequestorType from './RequestorType/RequestorType';
+import AutoEnrollment from './AutoEnrollment/AutoEnrollment';
 
 export default class EnrollmentParent extends React.Component {
 
@@ -36,6 +37,8 @@ export default class EnrollmentParent extends React.Component {
                 <RequestorType radioButton={radioButton} onChange={this.handleChangeRadio}  />
                 { radioButton === "0"? <p> Please choose your requestor type. </p> : "" }
                 { this.isForMyselfOrAirbusManage() ? <FormContainer /> : "" }
+                {radioButton === "3" ? <AutoEnrollment/> : ""}
+
             </div>
         )
 

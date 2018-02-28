@@ -66,6 +66,11 @@ const studentRedux = Loadable({
     loading: Loading,
 });
 
+const formBoot = Loadable({
+    loader: () => import('./FormBoot'),
+    loading: Loading,
+});
+
 const Routes = () => (
 <Provider store={store}>
   <Router>
@@ -85,6 +90,7 @@ const Routes = () => (
             <li><Link to="/test404">test-404</Link></li>
             <li><Link to="/inscription">enrollment form</Link></li>
             <li><Link to="/students">students Redux</Link></li>
+            <li><Link to="/formboot">formulaire simple bootstrap</Link></li>
         </ul>
         </div>
         <div style={{ flex: 1, padding: '10px' }}>
@@ -97,6 +103,7 @@ const Routes = () => (
             <Route path="/formulaires" component={Formulaires}/>
             <Route path="/inscription" component={EnrollmentParent}/>
             <Route path="/students" component={studentRedux}/>
+            <Route path="/formboot" component={formBoot}/>
             <Route component={page404}/>
         </Switch>
         </div>

@@ -48,9 +48,10 @@ export default class EnrollmentForm extends React.Component {
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.setValidity = this.setValidity.bind(this);
     }
 
-    handleChange(e,formChoice,isValid) {
+    handleChange(e,formChoice) {
         let input = e.target.value;
 
         if(formChoice === "requestor") {
@@ -63,11 +64,10 @@ export default class EnrollmentForm extends React.Component {
                 requestor: {
                     ...prevState.requestor,
                     [stateField]: input,
-                    isValid: isValid
                 }
-            }))
+            }));
         }
-        console.dir(this.state.requestor);
+        console.dir(this.state.requestor.isValid);
     }
 
     handleClick() {
@@ -75,7 +75,7 @@ export default class EnrollmentForm extends React.Component {
         let requestor = {...this.state.requestor};
         requestor.name = name;
         this.setState({requestor});
-        console.dir(this.state.requestor);
+        // console.dir(this.state.requestor);
 
         // autre façon :
         // const field = event.target.name;
@@ -87,6 +87,18 @@ export default class EnrollmentForm extends React.Component {
         // });
         
     }
+
+    setValidity(valid) {
+        console.log("validity = " + valid);
+        if(valid !== this.state.requestor.isValid) {
+            this.setState(prevState => ({
+                requestor: {
+                    ...prevState.requestor,
+                    isValid: valid,
+                }
+            }))
+        }
+    }
     
     print(e) {
         e.preventDefault();
@@ -97,7 +109,7 @@ export default class EnrollmentForm extends React.Component {
         return (
             <div className="container">
                 <form>
-                <RequestorForm form={this.state.requestor} onChange={this.handleChange} />
+                <RequestorForm formReq={this.state.requestor} setValidity={this.setValidity} onChange={this.handleChange} />
                 <button className="btn btn-primary" disabled={!this.state.requestor.isValid}> requestor valid </button>
                 <button className="btn btn-primary"onClick={this.print}> print </button>
                 </form>

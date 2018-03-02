@@ -8,7 +8,7 @@ const requestor = {
     firstName:'',
     login:'',
     companies:{},
-    companySelected:{},
+    companySelected:'',
     airbusDept:'',
     email:'',
     isValid:false
@@ -105,6 +105,8 @@ export default class EnrollmentForm extends React.Component {
                 {this.state.requestor.isValid.toString()}
                 <br/>
                 <button onClick={this.handleClick}> changer requestor name</button>
+                <br/>
+                {this.state.requestor.name}
             </pre>
             </div>
         )

@@ -84,7 +84,7 @@ class FormContainer extends React.Component {
 
 
     render() {
-        const test = "";
+        // const test = "";
         const name = this.state.name;
         const firstName = this.state.firstName;
         const isEnabled = name.length > 0 && firstName.length > 0 && this.state.companySelected !== -1;

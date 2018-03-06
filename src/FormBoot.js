@@ -50,6 +50,8 @@ import React, {Component} from 'react';
               </div>
 
               <button className="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
+              <br />
+              <button className="btn btn-lg btn-primary" type="submit">Send request</button>
             </form>
           </div>
         );

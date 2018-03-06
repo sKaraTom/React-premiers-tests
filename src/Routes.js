@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch,Link } from 'react-router-dom';
 import Loadable from 'react-loadable';
-import './css/bootstrap.min.css';
+
+import CustomNavBar from './components/navbar';
 
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import reducer from './redux/reducer';
 import { Provider } from 'react-redux';
-// import StudentsContainer from './redux/container';
 
 // redux
 const reducers = {
@@ -71,11 +71,24 @@ const formBoot = Loadable({
     loading: Loading,
 });
 
+const autoEnrollment = Loadable({
+    loader: () => import('./auto-enrollment/AutoEnrollmentContainer'),
+    loading: Loading,
+});
+
+const dashboard = Loadable({
+    loader: () => import('./dashboard/DashboardContainer.js'),
+    loading: Loading
+});
+
+
 const Routes = () => (
 <Provider store={store}>
   <Router>
-    <div style={{ display: 'flex' }}>
-      <div style={{
+      <div>
+    {/* <div style={{ display: 'flex' }}> */}
+    <CustomNavBar />
+      {/* <div style={{
         padding: '10px',
         height:'100vh',
         background: '#f0f0f0'
@@ -91,8 +104,11 @@ const Routes = () => (
             <li><Link to="/inscription">enrollment form</Link></li>
             <li><Link to="/students">students Redux</Link></li>
             <li><Link to="/formboot">formulaire simple bootstrap</Link></li>
+            <li><Link to="/autoenrollment">simulation test enrollment</Link></li>
+            <li><Link to="/dashboard">dashboard</Link></li>
         </ul>
-        </div>
+        
+        </div> */}
         <div style={{ flex: 1, padding: '10px' }}>
         <Switch>
             <Route  path="/" exact component={Home}/>
@@ -104,6 +120,8 @@ const Routes = () => (
             <Route path="/inscription" component={EnrollmentParent}/>
             <Route path="/students" component={studentRedux}/>
             <Route path="/formboot" component={formBoot}/>
+            <Route path="/autoenrollment" component={autoEnrollment}/>
+            <Route path="/dashboard" component={dashboard}/>
             <Route component={page404}/>
         </Switch>
         </div>

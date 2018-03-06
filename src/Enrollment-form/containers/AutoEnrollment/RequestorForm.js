@@ -42,7 +42,7 @@ export default class RequestorForm extends React.Component {
     }
 
     render() {
-        const  { name, firstName, login, companies, companySelected, airbusDept, email, isValid } = this.props.formReq;
+        const  { name,email } = this.props.formReq;
         this.validateForm2(this.props.formReq);
         // if(requestorIsValid) {
             
